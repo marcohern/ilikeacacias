@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>locator</title>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+	<script src="http://debug.phonegap.com/target/target-script-min.js#1like4cacias"></script>
+    <!-- Extra Codiqa features -->
+    <link rel="stylesheet" href="css/colonizadores.css">
+    <link rel="stylesheet" href="css/locator.css">
+	
+    <!-- jQuery and jQuery Mobile -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.mobile.min.js"></script>
+    <!-- Extra Codiqa features -->
+    <script src="js/locator.styles.js"></script>
+    <script src="js/locator.js"></script>
+    <script src="js/lang.js"></script>
+</head>
+<body >
+
+
+	<!--Facebook Integration-->
+	<div id="fb-root"></div>
+    <script>
+	/*
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId: '156413491211564',
+          cookie: true,
+          xfbml: true,
+          oauth: true
+        });
+        FB.Event.subscribe('auth.login', function(response) {
+          window.location.reload();
+        });
+        FB.Event.subscribe('auth.logout', function(response) {
+          window.location.reload();
+        });
+      };
+      (function() {
+        var e = document.createElement('script'); e.async = true;
+        e.src = document.location.protocol +
+          '//connect.facebook.net/es_ES/all.js';
+        document.getElementById('fb-root').appendChild(e);
+      }());
+*/
+    </script>
+	<!--/Facebook Integration-->
+
+
+    <div data-role="page">
+        <div data-role="panel" id="settingsPanel" data-position="left" data-theme="a">
+            <h3 data-lang="titleSetting">
+				<span class="js-lang" data-lang="settings">Configuración</span>
+			</h3>
+			<br/>
+			<br/>
+			<br/>
+			<a class="face_login" href="#" id="fblogin" class="deauthorized" data-icon="custom" onclick="javascript:login_facebook();">
+			<a class="face_logout" href="#" id="fblogin" class="authorized" data-icon="custom" onclick="javascript:logout_facebook();">
+            
+            </a>
+            <fieldset data-role="controlgroup" data-type="horizontal" >
+                <legend data-lang="titleLanguage">
+					<span class="js-lang" data-lang="language">Lenguaje</span>
+				</legend>
+                <input data-inset="false" type="radio" name="lang" class="js-lang" id="langes" value="on" checked="checked" data-theme="a">
+                <label data-lang="optEs" for="langes">
+                    Español
+				</label>
+                <input type="radio" name="lang" class="js-lang" id="langen" value="off" data-theme="a">
+                <label data-lang="optEn" for="langen">
+                    English
+				</label>
+<!--
+                <input type="radio" name="lang" class="js-lang" id="langfr" value="off" data-theme="a">
+                <label data-lang="optFr" for="langfr">
+                    Fr
+				</label>
+                <input type="radio" name="lang" class="js-lang" id="langpt" value="off" data-theme="a">
+                <label data-lang="optPt" for="langpt">
+                    Pt
+				</label>
+-->
+            </fieldset>
+
+          <fieldset data-role="controlgroup" data-type="horizontal" >
+                <legend>
+					<span class="js-lang" data-lang="profile">Perfil</span>
+				</legend>
+                <input data-inset="false" type="radio" name="profileSetting" id="settingProfileL" value="on" checked="checked" data-theme="a">
+                <label for="settingProfileL">
+                    <span class="js-lang" data-lang="profileLocal">Local</span>
+				</label>
+                <input type="radio" name="profileSetting" id="settingProfileT" data-theme="a">
+                <label for="settingProfileT">
+                    <span class="js-lang" data-lang="profileTurist">Turista</span>
+				</label>
+            </fieldset>
+
+            <ul data-role="listview" data-inset="true" data-theme="a">
+                <li data-icon="search">
+					<a id="lnkHelp" href="#popuphelp" data-prefetch="true" data-rel="popup">
+						<span class="js-lang" data-lang="help">Ayuda</span>
+					</a>
+				</li>
+
+                <!--li data-icon="info">
+					<a href="http://acacias.gov.co/app/contactenos.html" target="_blank">
+						<span class="js-lang" data-lang="contactUs">Contáctenos</span>
+					</a>
+				</li-->
+
+                 <li data-icon="plus">
+                 <a href="terms.html">
+                 <span class="js-lang" data-lang="about">Acerca de</span>
+                 </a>
+                 </li>
+
+            </ul>
+
+ 	    <div data-role="popup" id="popuphelp" data-overlay-theme="a" data-theme="d" data-corners="false">
+                <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete"
+                    data-iconpos="notext" class="ui-btn-right">Close</a>
+                <img src="img/ayudas.png" alt="image">
+            </div>
+ </div>
+
+        <div data-role="panel" id="infoPanel" data-theme="b" data-position-fixed="true" data-position="right"
+            data-display="reveal">
+            <a href="#popupPhoto" data-rel="popup" data-position-to="window" data-transition="fade">
+                <div style="width: 100%; height: 200px; position: relative; background-color: #fbfbfb;
+                    border: 1px solid #b8b8b8; overflow: hidden;">
+                   <img class='js-imageUrl' style="zoom:80%" onError="defaultImg(this);" alt="image">
+                </div>
+            </a>
+            <div data-role="popup" id="popupPhoto" data-overlay-theme="a" data-theme="d" data-corners="false">
+                <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete"
+                    data-iconpos="notext" class="ui-btn-right">Close</a>
+                <img class='js-imageUrl'  alt="image">
+            </div>
+            <div class="ui-screen-hidden ui-popup-screen fade ui-body-a" id="popupPhotoLandscape-screen">
+            </div>
+            <h3 class="js-title">[TITLE]</h3>
+            <p><a class='js-artmap' href='#' border='0'><img src="img/mapmarker.png"><span class="js-addr"></span></a></p>
+			<p>(<span class="js-lat"></span>:<span class="js-lng"></span>) - (<span class="js-latitud"></span>:<span class="js-longitud"></span>)</p>
+           
+            <div class="authorized">
+				<div class="ranking">
+					<a href="#" data-rate="1" class="stars star-off"></a>
+					<a data-rate="2" class="stars star-off"></a>
+					<a data-rate="3" class="stars star-off"></a>
+					<a data-rate="4" class="stars star-off"></a>
+					<a data-rate="5" class="stars star-off"></a>
+				</div>
+				<input type="hidden" id="selectedRating"/>
+				<a id="sendRating" href="#" data-role="button" data-theme="a">
+					<span class="js-lang" data-lang="send">Enviar</span>
+				</a>
+			</div>
+            <p style="text-align: justify; font-size: 14px" data-mini="true">
+            </p>
+            </br>
+			            <div data-role="collapsible-set" data-theme="a" data-content-theme="a">
+                               
+                <div data-role="collapsible" data-collapsed="false">
+                    <h3>
+						<span class="js-lang" data-lang="contact">Contacto</span>
+					</h3>
+                    <p class="contact">
+                        <span class="js-cname"></span> <br />
+						<!--span class="js-lang" data-lang="mobileNo">Nombre:</span> <span class="js-cell"></span> <br /-->
+						<span class="js-lang" data-lang="phoneNo">Tel:</span> <span class="js-phone"></span> <br />
+						<span class="js-lang" data-lang="emailAddr">Email:</span> <a class="js-email"></a>
+                        <br />
+                        <a class="js-tw" target="_blank"></a>
+                        <br />
+                        <a class="js-fb" target="_blank"></a>
+                    </p>
+                </div>
+                <div data-role="collapsible" data-collapsed="true">
+                    <h3>
+                        <span class="js-lang" data-lang="schedule">Horarios</span>
+                    </h3>
+                    <p class="js-horarios">
+                    </p>
+                </div>
+                <div data-role="collapsible" data-collapsed="true">
+                    <h3>
+                        <span class="js-lang" data-lang="comments">Comentarios</span>
+					</h3>
+					<div class="authorized">
+						<textarea name="" id="textReview" placeholder="" data-theme="d"></textarea>
+						<input id="sendReview" type="submit" value="Enviar" />
+					</div>
+                    <br />
+                    <ul id="place_comments" data-role="listview" class="comments" style="font-size: 12px; font-weight: normal;">
+                        <li>
+                            <div class="stars p3">
+                            </div>
+                            Muy bueno...</li>
+                        <li>
+                            <div class="stars p5">
+                            </div>
+                            recomendado</li>
+                        <li>
+                            <div class="stars p4">
+                            </div>
+                            muy buena atención al cliente</li>
+                    </ul>
+                </div>
+				<div data-role="collapsible" data-collapsed="true">
+					<h3>
+						<span class="js-lang" data-lang="ratings">Calificación</span>
+					</h3>
+					<span class="stars star-on"></span>
+					<span class="stars star-on"></span>
+					<span class="stars star-on"></span>
+					<span class="stars star-on"></span>
+					<span class="stars star-on"></span>
+					<span id="star_amount_5" class="star_amount">0</span>
+					<br/>
+					<span class="stars star-on"></span>
+					<span class="stars star-on"></span>
+					<span class="stars star-on"></span>
+					<span class="stars star-on"></span>
+					<span class="stars star-off"></span>
+					<span id="star_amount_4" class="star_amount">0</span>
+					<br/>
+					<span class="stars star-on"></span>
+					<span class="stars star-on"></span>
+					<span class="stars star-on"></span>
+					<span class="stars star-off"></span>
+					<span class="stars star-off"></span>
+					<span id="star_amount_3" class="star_amount">0</span>
+					<br/>
+					<span class="stars star-on"></span>
+					<span class="stars star-on"></span>
+					<span class="stars star-off"></span>
+					<span class="stars star-off"></span>
+					<span class="stars star-off"></span>
+					<span id="star_amount_2" class="star_amount">0</span>
+					<br/>
+					<span class="stars star-on"></span>
+					<span class="stars star-off"></span>
+					<span class="stars star-off"></span>
+					<span class="stars star-off"></span>
+					<span class="stars star-off"></span>
+					<span id="star_amount_1" class="star_amount">0</span>
+					<br/>
+				</div>
+
+            </div>
+        </div>
+        <div data-role="panel" id="filtersPanel" data-theme="a" data-position-fixed="true"
+            data-position="right" data-display="push">
+            
+            <div data-role="controlgroup" data-type="horizontal" data-mini="true" style="text-align: center;">
+                <a class="checkAllCats" href="#" data-theme="a" data-role="button"><span class="js-lang" data-lang="all">Todas</span></a> 
+                <a class="uncheckAllCats" href="#" data-theme="a"data-role="button"><span class="js-lang" data-lang="none">Ninguna</span></a>
+            </div>
+            <div id="categoryMenu" class="categories">
+                <ul>
+                    <li><a href="#" data-filtertext="alcaldia" class="alcaldia profileL" data-cat="alcaldia">
+                    </a></li>
+					<li><a href="#"  class="internet profileL" data-cat="internet">
+                    </a></li>
+                    <li><a href="#" class="tic_y_tecnologia" data-cat="tic_y_tecnologia">
+                    </a></li>
+                    <li><a href="#"  class="cultural profileL" data-cat="cultural">
+                    </a></li>
+                    <li><a href="#"  class="religion_y_social" data-cat="religion_y_social">
+                    </a></li>
+                    <li><a href="#" class="entretenimiento" data-cat="entretenimiento">
+                    </a></li>
+                    <li><a href="#" class="servicios_publicos" data-cat="servicios_publicos">
+                    </a></li>
+                    <li><a href="#" class="judicial" data-cat="judicial">
+                    </a></li>
+                    <li><a href="#" class="educacion" data-cat="educacion">
+                    </a></li>
+                    <li><a href="#" class="deporte_y_recreacion profileL"data-cat="deporte_y_recreacion">
+                    </a></li>
+                    <li><a href="#"  class="medios_de_comunicacion profileT" data-cat="medios_de_comunicacion">
+                    </a></li>
+					<li><a href="#" class="emergencias profileT" data-cat="emergencias">
+                    </a></li>
+                    <li><a href="#" class="transporte profileT" data-cat="transporte">
+                    </a></li>
+                    <li><a href="#" class="comercial" data-cat="comercial">
+                    </a></li>
+                    <li><a href="#" class="panaderia" data-cat="panaderia">
+                    </a></li>                    
+                    <li><a href="#" class="salud_y_droguerias" data-cat="salud_y_droguerias">
+                    </a></li>
+                    <li><a href="#"  class="comida_tipica" data-cat="comida_tipica">
+                    </a></li>
+                    <li><a href="#"  class="restaurante" data-cat="restaurante">
+                    </a></li>
+                    <li><a href="#"  class="supermercado" data-cat="supermercado">
+                    </a></li>
+                    <li><a href="#"  class="tienda_de_barrio" data-cat="tienda_de_barrio">
+                    </a></li>
+                    <li><a href="#"  class="heladeria_comidasrapidas" data-cat="heladeria_comidasrapidas">
+                    </a></li>               
+                    <li><a href="#"  class="banco_y_financiero" data-cat="banco_y_financiero">
+                    </a></li>
+                    <li><a href="#"  class="mensajeria_y_giros" data-cat="mensajeria_y_giros">
+                    </a></li>
+                    <li><a href="#"  class="cajero_electronico" data-cat="cajero_electronico">
+                    </a></li>
+                    <li><a href="#"  class="gasolina  profileT" data-cat="gasolina">
+                    </a></li>
+                    <li><a href="#"  class="guias_turisticos" data-cat="guias_turisticos">
+                    </a></li>                    
+                    <li><a href="#" class="sitio_turistico profileL" data-cat="sitio_turistico">
+                    </a></li>
+                    <li><a href="#" class="artesanias profileT" data-cat="artesanias">
+                    </a></li>
+                    <li><a href="#"  class="hospedaje" data-cat="hospedaje">
+                    </a></li>
+				    <li><a href="#"  class="bares_y_discotecas" data-cat="bares_y_discotecas">
+                    </a></li>
+                    <li><a href="#"  class="eventos_en_estos_dias" data-cat="eventos_en_estos_dias">
+                    </a></li>
+                    <li><a href="#"  class="informacion_basica" data-cat="informacion_basica">
+                    </a></li>
+                </ul>
+            </div>
+            <div>
+                <a id="filter" data-role="button" data-theme="b" style="width: 100%;" data-inset="false"
+                    data-mini="true"><span class="js-lang" data-lang="filter">Filtrar</span></a>
+			</div>
+            <br />
+            <div style="clear: both;">
+            </div>
+            <!-- <div data-role="panel" id="mayorPanel" data-theme="a" data-position-fixed="true">
+                <h3>
+                    Alcaldia</h3>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vel nulla sed
+                    augue pretium sodales quis vitae nibh. Vestibulum sit amet odio urna, at rutrum
+                    velit. Aliquam eu metus diam. Aenean aliquam urna ac justo faucibus molestie. Cras
+                    tempor, ante venenatis aliquet aliquet, urna eros tempor nisl, eu imperdiet nulla
+                    eros non nibh. Sed venenatis euismod lectus ac consectetur.
+                </p>
+            </div>-->
+        </div>
+        <div id="header" data-role="header" style="height: 50px" data-position="fixed">
+            <a href="#settingsPanel" data-role="button" data-icon="gear" data-iconpos="notext"
+                data-theme="a" id="openSettingsPanel">Gear</a>
+            <div style="margin-left: 45px; margin-right: 45px;">
+                <input id="searchBox" type="search" name="search" data-mini="true" value="" data-theme="c"
+                    placeholder="Buscar un sitio..." data-clear-btn="true" class="js-lang-ph" data-lang="searchSite" />
+            </div>
+            <a href="#" data-role="button" data-icon="grid" data-iconpos="notext" data-theme="a"
+                id="openFiltersPanel">Categorías</a>
+            <div data-role="footer" class="nav-glyphish-example">
+                <div data-role="navbar" class="nav-glyphish-example" data-grid="a">
+                    <ul>
+                        <li>
+                            <!-- Adding theme a -->
+                            <a href="#" id="currentpos" data-icon="custom" data-theme="a"></a></li>
+                        <!-- <li><a href="#" id="cleardirs" data-icon="custom"></a></li>-->
+                        <li><a href="http://es.m.wikipedia.org/wiki/Acac%C3%ADas" target="_blank" id="mayoralty" data-icon="custom"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="content" data-role="content" data-theme="c" style="position: relative; padding: 0;background-image:url('img/background.jpg');background-repeat:no-repeat;background-position:center center; background-color:#e0e0e0;top:42px">
+            <div id="map" style="width: 100%; height: 100%;">
+            </div>
+        
+		<!--	<div style="position:absolute;right:24px;bottom:24px;">
+				<div data-role="controlgroup" data-type="horizontal">
+					<a id="currentpos" href="#" data-role="button" data-icon="home" data-iconpos="notext" data-theme="a" data-inline="true">Mi Ubicacion</a>
+					<a id="cleardirs" href="#" data-role="button" data-icon="alert" data-iconpos="notext" data-theme="a" data-inline="true">Clear Dir</a>
+				</div>
+			</div> -->
+            <div id="resul">
+                <a href="#" data-role="button" data-icon="back" data-theme="c" id="cancelSearch">
+					<span class="js-lang" data-lang="returnToMap">Regresar</span>
+				</a>
+                
+                <ul data-role="listview" data-inset="true" class="searchResultList" data-split-icon="bars" data-split-theme="d" data-inset="true">
+                  
+                </ul>
+                
+                <ul id="_baseSearchItems" style="display:none">
+                  <li>
+                    	<a class="js-itemMap" href="#">
+			<span style="float:left;margin-right:5px" class="js-itemImg resulCat"></span>
+			<h3 class="js-itemTitle"></h3>
+			<p class="js-ItemDescription"></p></a>
+			<a class="js-viewDetail" data-rel="popup" data-position-to="window" data-transition="pop"></a>
+                  </li>
+                </ul>
+            </div>
+            
+        </div>
+        <div data-role="footer" data-id="foo1" data-position="fixed">
+           <!-- <div data-role="navbar" class="myNavBar" data-grid="b">
+                <ul>
+                    <li><a id="currentpos" href="#" class="navbar-location"  data-iconpos="center" data-icon="none"></a></li>
+                    <li><a id="cleardirs" href="#" data-icon="alert" data-icon="custom" ></a></li>
+                    <li><a id="currentpos" href="#" data-icon="home" data-icon="custom"></a></li>
+                </ul>
+            </div> /navbar -->
+         
+            </div>
+        </div><!-- /footer -->
+    </div>
+    <script type="text/javascript" src="cordova.js"></script>
+	<script type="text/javascript" src="cdv-plugin-fb-connect.js"></script>
+	<script type="text/javascript" src="facebook_js_sdk.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+      app.initialize();
+       </script>
+	<script type="text/javascript">
+	window.onerror = function(message, url, lineNumber) {
+		console.log("JS Error: "+message+" in "+url+" at line "+lineNumber);
+	}
+	</script>
+    <script language="javascript" type="text/javascript">
+
+	function fb_server_read() {
+		console.log("fb_server_read running...");
+		$.ajax({
+			type: "post",
+			url: locator.urlprefix + "/service/login.facebook.php",
+			dataType: "json",
+			contentType: 'application/json; charset=utf-8',
+			success: function (data, status, jxqr) {
+				console.log("fb_server_read success: "+JSON.stringify(data));
+			},
+			error:function(result){
+				//alert('error!'+result);
+				console.log("fb_server_read error: "+JSON.stringify(result));
+			}
+		});
+	}
+	
+	if ((typeof cordova == 'undefined') && (typeof Cordova == 'undefined')) console.log('Cordova variable does not exist. Check that you have included cordova.js correctly');
+    if (typeof CDV == 'undefined') console.log('CDV variable does not exist. Check that you have included cdv-plugin-fb-connect.js correctly');
+    if (typeof FB == 'undefined') console.log('FB variable does not exist. Check that you have included the Facebook JS SDK file.');
+	else {
+		get_facebook_info = function (response) {
+			//alert(response.name);
+			console.log("got user, setting...");
+			console.log("response:"+JSON.stringify(response));
+			var input = {id:response.id, n:response.name, u:response.username, e:response.email};
+			console.log("input data: "+JSON.stringify(input));
+			$.ajax({
+				type: "post",
+				url: locator.urlprefix + "/service/create.facebook.user.php",
+				dataType: "json",
+				data: input,
+				//contentType: 'application/json; charset=utf-8',
+				success: function (data, status, jxqr) {
+					console.log("facebook user login success: "+JSON.stringify(data));
+					locator.userIsLoggedIn = true;
+					locator.user = {id:data.output.user.id, name:data.output.user.name, email:data.output.user.email};
+				},
+				error:function(result){
+					//alert('error!'+result);
+					console.log("facebook user login error: "+JSON.stringify(result));
+				}
+			});
+			//fb_server_read();
+		};
+		
+		login_facebook = function() {
+			FB.login(
+				function(response) {
+					if (response.status == 'connected') {
+						console.log("Facebook Connected!");
+						//FB.api('/me', get_facebook_info);
+					} else if (response.status == 'not_authorized') {
+						console.log("Facebook Not Authorized!");
+					} else {
+						console.log("Status: " + response.status);
+						locator.userIsLoggedIn = false;
+						locator.user = null;
+						console.log('not logged in');
+					}
+				}, { scope: "email" }
+			);
+		};
+		
+		logout_facebook = function() {
+			FB.logout(function(response) {
+				console.log("Facebook Logout complete!");
+			});
+		};
+		
+		check_facebook = function() {
+			console.log("Check Facebook Login Status");
+			FB.getLoginStatus (function (response) {
+				if (response.status=='connected') {
+					//FB.api('/me', get_facebook_info);
+				} else {
+					console.log("Status: " + response.status);
+					login_facebook();
+				};
+			});
+		};
+		
+		init_facebook = function() {
+			try {
+				//alert('Device is ready! Make sure you set your app_id below this alert.');
+				console.log("Device is ready");
+				$('.authorized').hide();
+				$('.deauthorized').show();
+				FB.init({
+					appId: "156413491211564",
+					nativeInterface: CDV.FB,
+					useCachedDialogs: false,
+					cookie: true,
+					xfbml: true,
+					oauth: true
+				});
+				
+				FB.Event.subscribe('auth.login', function(response) {
+					console.log('auth.login event');
+					$('.deauthorized').hide();
+					$('.authorized').show();
+					FB.api('/me', get_facebook_info);
+				});
+
+				FB.Event.subscribe('auth.logout', function(response) {
+					console.log('auth.logout event');
+					locator.userIsLoggedIn = false;
+					locator.user = null;
+					$('.authorized').hide();
+					$('.deauthorized').show();
+					console.log('not logged in');
+				});
+
+				FB.Event.subscribe('auth.sessionChange', function(response) {
+					console.log('auth.sessionChange event');
+				});
+
+				FB.Event.subscribe('auth.statusChange', function(response) {
+					console.log('auth.statusChange event');
+				});	
+				console.log("FB.init executed");
+/*
+				(function() {
+					console.log("Creating facebook script");
+					var e = document.createElement('script'); e.async = true;
+					e.src = document.location.protocol + '//connect.facebook.net/es_ES/all.js';
+					document.getElementById('fb-root').appendChild(e);
+					console.log("facebook script Created");
+				}());
+*/
+				//document.getElementById('data').innerHTML = "";
+			} catch (e) {
+				//alert(e);
+				console.log(e);
+			}
+		};
+
+		//document.addEventListener('deviceready', deviceReady, false);
+	}
+
+	$(document).ready(function () {
+		//if (onDeviceReady) onDeviceReady();
+		locator.init();
+		
+	});
+
+    </script>
+</body>
+</html>

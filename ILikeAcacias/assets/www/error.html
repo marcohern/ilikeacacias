@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<title>Error</title>
+	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+	<!-- Extra Codiqa features -->
+	<link rel="stylesheet" href="css/colonizadores.css">
+	<link rel="stylesheet" href="css/locator.css">
+	<!-- jQuery and jQuery Mobile -->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery.mobile.min.js"></script>
+    </head>
+    <body>
+        <div data-role="page">
+            <div data-role="content">
+                <p style="text-align:center"><img src="img/error.png" width="343" height="220"><br>
+              Ha ocurrido un error. Es posible que no haya conexion a internet disponible en este momento.<br>
+	      Cierre la aplicación e intente mas tarde.</p>
+				<a id="return" href="index.html" data-role="button">Cerrar Aplicación</a>
+				<script type="text/javascript" src="cordova.js"></script>
+				<script>
+$('#return').click(function(e) {
+	//var url = $(this).attr('href');
+	//$.mobile.changePage( url, { reloadPage: true, transition: "none"} );
+	console.log("closing");
+	navigator.app.exitApp();
+});
+				</script>
+            </div>
+        </div>
+    </body>
+</html>

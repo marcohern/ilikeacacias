@@ -1,0 +1,278 @@
+body {height:100%;}
+
+.cb { clear:both;}
+
+.infoBox: {
+	border: 1px solid black;
+	z-index: 100;
+	padding:4px;
+	text-align: left;
+	font-size: 8pt;
+	width: 180px;
+	background-color:#FFF;
+	border-radius:0.75em;
+	line-height:1em;
+	background-image:-webkit-linear-gradient(top, #AAA, white);
+}
+
+.box .boxtitle {
+	font-size:14px;
+	margin:0;
+	padding:0;
+float:left;
+}
+
+.box .boxtext: {
+	font-size:10px;
+	margin:0;
+	padding:0;
+}
+
+img.locimage {
+	width:32px;
+	height:32px;
+	float:left;
+	margin:4px;
+}
+.stars {
+	background-image:url(../img/2stars36x36.png);
+	background-position:0px 0px;
+	width:35px;
+	height:35px;
+}
+.stars.p5 { background-position:-4px -4px; }
+.stars.p4 { background-position:-4px -24px; }
+.stars.p3 {	background-position:-4px -44px; }
+.stars.p2 {	background-position:-4px -64px; }
+.stars.p1 {	background-position:-4px -84px; }
+.stars.p0 {	background-position:-4px -84px; }
+
+.ranking a, span.stars {width: 35px;display: inline-block;}
+.stars.star-on { background-position:0px 0px; }
+.stars.star-off { background-position:35px 0px; }
+
+.categories{
+overflow:auto;
+padding: 0px;
+margin: 0px;
+}
+
+::-webkit-scrollbar {
+	width: 8px;
+}
+::-webkit-scrollbar-button {
+	width: 8px;
+	height:5px;
+}
+::-webkit-scrollbar-track {
+	background:
+	border: skinny plain lightgray;
+	box-shadow: 0px 0px 3px #dfdfdf inset;
+	border-radius:10px;
+}
+::-webkit-scrollbar-thumb {
+	background:
+	border: skinny plain gray;
+	border-radius:10px;
+}
+::-webkit-scrollbar-thumb:hover {
+	background:
+}
+.categories ul{
+list-style-type: none;
+padding: 0px;
+margin: 0px;}
+.categories ul li{
+	float:left;display:inline;
+}
+
+.categories ul li a, .resulCat{display:block;width:78px;height:78px;background-image:url(../img/menu-cat.jpg);}
+.categories ul li a.alcaldia.js-checked {background-position:-0px -0px;}
+.resulCat.alcaldia {background-position:-35px -0px;}
+
+.categories ul li a.internet.js-checked, .resulCat.internet{width:78px; background-position:-156px -0px;}
+.categories ul li a.tic_y_tecnologia.js-checked, .resulCat.tic_y_tecnologia{width:78px; background-position:-0px -78px;}
+.categories ul li a.cultural.js-checked, .resulCat.cultural {width:78px; background-position:-78px -78px;}
+.categories ul li a.religion_y_social.js-checked, .resulCat.religion_y_social {width:78px; background-position:-156px -78px;}
+
+.categories ul li a.entretenimiento.js-checked, .resulCat.entretenimiento {width:78px; background-position:-0px -156px;}
+.categories ul li a.servicios_publicos.js-checked, .resulCat.servicios_publicos {width:78px; background-position:-78px -156px;}
+.categories ul li a.judicial.js-checked, .resulCat.judicial {width:78px; background-position:-156px -156px;}
+
+.categories ul li a.educacion.js-checked, .resulCat.educacion {width:78px; background-position:-0px -234px;}
+.categories ul li a.deporte_y_recreacion.js-checked, .resulCat.deporte_y_recreacion {width:78px; background-position:-78px -234px;}
+.categories ul li a.medios_de_comunicacion.js-checked, .resulCat.medios_de_comunicacion {width:78px; background-position:-156px -234px;}
+
+.categories ul li a.emergencias.js-checked, .resulCat.emergencias {width:78px; background-position:-0px -312px;}
+.categories ul li a.transporte.js-checked, .resulCat.tranporte {width:78px; background-position:-78px -312px;}
+.categories ul li a.comercial.js-checked, .resulCat.comercial  {width:78px; background-position:-156px -312px;}
+
+.categories ul li a.panaderia.js-checked, .resulCat.panaderia {width:78px; background-position:-0px -390px;}
+.categories ul li a.salud_y_droguerias.js-checked, .resulCat.salud_y_droguerias {width:78px; background-position:-78px -390px;}
+.categories ul li a.comida_tipica.js-checked, .resulCat.comida_tipica {width:78px; background-position:-156px -390px;}
+
+.categories ul li a.restaurante.js-checked, .resulCat.restaurante {width:78px; background-position:-0px -468px;}
+.categories ul li a.tienda_de_barrio.js-checked, .resulCat.tienda_de_barrio {width:78px; background-position:-78px -468px;}
+.categories ul li a.banco_y_financiero.js-checked, .resulCat.banco_y_financiero {width:78px; background-position:-156px -468px;}
+
+.categories ul li a.mensajeria_y_giros.js-checked, .resulCat.mensajeria_y_giros {width:78px; background-position:-0px -546px;}
+.categories ul li a.cajero_electronico.js-checked, .resulCat.cajero_electronico {width:78px; background-position:-78px -546px;}
+.categories ul li a.gasolina.js-checked, .resulCat.gasolina {width:78px; background-position:-156px -546px;}
+
+.categories ul li a.guias_turisticos.js-checked, .resulCat.guias_turisticos  {width:78px; background-position:-0px -624px;}
+.categories ul li a.sitio_turistico.js-checked, .resulCat.sitio_turistico {width:78px; background-position:-78px -624px;}
+.categories ul li a.artesanias.js-checked, .resulCat.artesanias {width:78px; background-position:-156px -624px;}
+
+.categories ul li a.heladeria_comidasrapidas.js-checked, .resulCat.heladeria_comidasrapidas  {width:78px; background-position:-0px -702px;}
+.categories ul li a.hospedaje.js-checked, .resulCat.hospedaje {width:78px; background-position:-78px -702px;}
+.categories ul li a.supermercado.js-checked, .resulCat.supermercado {width:78px; background-position:-156px -702px;}
+
+.categories ul li a.bares_y_discotecas.js-checked, .resulCat.bares_y_discotecas {width:78px; background-position:-0px -780px;}
+.categories ul li a.eventos_en_estos_dias.js-checked, .resulCat.eventos_en_estos_dias  {width:78px; background-position:-78px -780px;}
+.categories ul li a.informacion_basica.js-checked, .resulCat.informacion_basica {width:78px; background-position:-156px -780px;}
+
+/*
+No usados
+.categories ul li a.guias_turisticos.js-checked, .resulCat.guias_turisticos {width:78px; background-position:-0px -858px;}
+.categories ul li a.heladeria_comidasrapidas.js-checked, .resulCat.heladeria_comidasrapidas {width:78px; background-position:78px -936px;}
+.categories ul li a.historia_del_lugar.js-checked, .resulCat.historia_del_lugar {width:78px; background-position:-78px -936px;}
+.categories ul li a.moda_recomendada.js-checked, .resulCat.moda_recomendada {width:78px; background-position:-156px -936px;}
+fin no usados
+*/
+
+.categories ul li a.alcaldia {width:156px;background-position:-234px -0px;}
+.categories ul li a.internet {background-position:-390px -0px;}
+
+.categories ul li a.tic_y_tecnologia {background-position:-234px -78px;}
+.categories ul li a.cultural {background-position:-312px -78px;}
+.categories ul li a.religion_y_social {background-position:-390px -78px;}
+
+.categories ul li a.entretenimiento {background-position:-234px -156px;}
+.categories ul li a.servicios_publicos {background-position:-312px -156px;}
+.categories ul li a.judicial {background-position:-390px -156px;}
+
+.categories ul li a.educacion {background-position:-234px -234px;}
+.categories ul li a.deporte_y_recreacion {background-position:-312px -234px;}
+.categories ul li a.medios_de_comunicacion {background-position:-390px -234px;}
+
+.categories ul li a.emergencias {background-position:-234px -312px;}
+.categories ul li a.transporte {background-position:-312px -312px;}
+.categories ul li a.comercial {background-position:-390px -312px;}
+
+.categories ul li a.panaderia {background-position:-234px -390px;}
+.categories ul li a.salud_y_droguerias {background-position:-312px -390px;}
+.categories ul li a.comida_tipica {background-position:-390px -390px;}
+
+.categories ul li a.restaurante {background-position:-234px -468px;}
+.categories ul li a.tienda_de_barrio {background-position:-312px -468px;}
+.categories ul li a.banco_y_financiero {background-position:-390px -468px;}
+
+.categories ul li a.mensajeria_y_giros {background-position:-234px -546px;}
+.categories ul li a.cajero_electronico {background-position:-312px -546px;}
+.categories ul li a.gasolina {background-position:-390px -546px;}
+
+.categories ul li a.guias_turisticos {background-position:-234px -624px;}
+.categories ul li a.sitio_turistico {background-position:-312px -624px;}
+.categories ul li a.artesanias {background-position:-390px -624px;}
+
+.categories ul li a.heladeria_comidasrapidas {background-position:-234px -702px;}
+.categories ul li a.hospedaje {background-position:-312px -702px;}
+.categories ul li a.supermercado {background-position:-390px -702px;}
+
+.categories ul li a.bares_y_discotecas {background-position:-234px -780px;}
+.categories ul li a.eventos_en_estos_dias {background-position:-312px -780px;}
+.categories ul li a.informacion_basica {background-position:-390px -780px;}
+
+/*
+No usados
+.categories ul li a.guias_turisticos {background-position:-390px -858px;}
+.categories ul li a.heladeria_comidasrapidas {background-position:-234px -936px;}
+.categories ul li a.historia_del_lugar {background-position:-312px -936px;}
+.categories ul li a.moda_recomendada {background-position:-390px -936px;}
+fin no usados
+*/
+
+ul.comments b {
+	color:yellow;
+}
+
+.help{
+	background-image:url(../img/ayudas.png);
+	background-repeat:no-repeat;
+	background-position:center center;
+	
+}
+
+.nav-glyphish-example .ui-btn .ui-btn-inner {
+    padding-top: 40px !important; 
+}
+
+.nav-glyphish-example .ui-btn .ui-icon { 
+    width: 45px!important; 
+    height: 35px!important; 
+    margin-left: -24px !important; 
+  /*   box-shadow: none!important; 
+   -moz-box-shadow: none!important;
+    -webkit-box-shadow: none!important;
+    -webkit-border-radius: none !important;
+    border-radius: none !important; */
+}
+
+#currentpos .ui-icon { 
+    background-image: url("../img/icons.png");
+    background-position: -107px -925px;
+    background-repeat: no-repeat;
+}
+
+#cleardirs .ui-icon { 
+    background-image: url("../img/icons.png");
+    background-position: -104px -350px;
+    background-repeat: no-repeat; 
+}
+
+#contacts .ui-icon { 
+    background-image: url("../img/icons.png");
+    background-position: -9px -540px;
+    background-repeat: no-repeat; 
+}
+
+#keypad .ui-icon { 
+    background-image: url("../img/icons.png");
+    background-position: -9px -783px;
+    background-repeat: no-repeat; 
+}
+
+#voicemail .ui-icon { 
+    background-image: url("../img/icons.png");
+    background-position: -394px -733px;
+    background-repeat: no-repeat; 
+}
+#mayoralty .ui-icon { 
+    background-image: url("../img/icons.png");
+    background-position: -441px -878px;
+    background-repeat: no-repeat; 
+}
+ 
+
+
+.infowindow{
+border:0px solid ;
+padding:5px;
+}
+
+
+.boxtitle{font-size:0.9em; min-width:255px;}
+.boxaddr{font-size:0.6em;}
+.boxhowto,.boxdetail{font-size:0.8em;text-decoration:none;}
+.face_login{background-image: url("../img/face_login.png");
+    background-size:190px;
+    background-repeat: no-repeat; 
+    display:block;
+    height: 30px;}
+
+#filtersPaneL{padding-top:50px}
+.members{text-align: left; padding-left:40px}
+
+.gmnoprint a {
+	display:none;
+}

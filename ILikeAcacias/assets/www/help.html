@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>help</title>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+    <!-- Extra Codiqa features -->
+    <link rel="stylesheet" href="css/colonizadores.css">
+    <link rel="stylesheet" href="css/locator.css">
+    <!-- jQuery and jQuery Mobile -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.mobile.min.js"></script>
+    <script src="js/locator.styles.js"></script>
+    <script src="js/locator.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+     <script type="text/javascript" >
+         alert('help');
+    </script>
+</head>
+<body>
+    <div data-role="page">
+        <div data-theme="a" data-role="header">
+            <a id="okhelp" data-role="button" data-transition="pop" href="index.html" data-icon="check"
+                data-iconpos="left" class="ui-btn-left">
+                listo
+            </a>
+            <h3>
+                Ayuda
+            </h3>
+        </div>
+        <div class="help">
+
+        </div>
+        
+<div class='infowindow'><h1 class='boxtitle'>"+site.name+"</h1><p class='boxaddr'>"+site.addr+"</p><a class='js-howto boxhowto' href='javascript:locator.showDirections();' border='0'><img src='img/road.png'/>¿Como llegar?</a><br /><a class='boxdetail boxlink' href='#infoPanel' border='0'><img src='img/32x32.png'/>Ver más info</a></div>
+
+    </div>
+
+
+</body>
+</html>
+
+   

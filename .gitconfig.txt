@@ -1,0 +1,8 @@
+[user]
+    name = Marco Hernandez
+    email = marcohern@gmail.com
+[color]
+    status = auto
+    branch = auto
+    diff = auto
+    interactive = auto

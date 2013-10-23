@@ -1,0 +1,44 @@
+<?php ?>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title></title>
+		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+		<link rel="stylesheet" href="https://d10ajoocuyu32n.cloudfront.net/mobile/1.3.1/jquery.mobile-1.3.1.min.css">
+
+		<!-- Extra Codiqa features -->
+		<link rel="stylesheet" href="css/codiqa.ext.css">
+
+		<!-- jQuery and jQuery Mobile -->
+		<script src="https://d10ajoocuyu32n.cloudfront.net/jquery-1.9.1.min.js"></script>
+		<script src="https://d10ajoocuyu32n.cloudfront.net/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+
+		<!-- Extra Codiqa features -->
+		<script src="https://d10ajoocuyu32n.cloudfront.net/codiqa.ext.js"></script>
+		<script src="js/locator.js"></script>
+	</head>
+	<body>
+		<div id="header" data-role="header" data-position="fixed" data-theme="a" style="text-align:center">
+		<a href="index.html" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="a" data-transition="slideup">Gear</a>
+			<h3>Categorías</h3>
+		</div>
+	</body>
+	<script>
+	
+   
+$.urlParam = function(name){
+    var results = new RegExp('[\\?&amp;]' + name + '=([^&amp;#]*)').exec(window.location.href);
+    return results[1] || 0;
+}
+
+$(document).ready(function(){
+	obj = jQuery.grep(locator.sites, function (obj) { return obj.id==$('.js-number').val(); }); 
+	if(obj && obj.length>0)
+		loadArticle(obj[0]);
+});
+	</script>
+</html>
